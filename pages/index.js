@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import localFont from "next/font/local";
 
@@ -13,16 +14,43 @@ const geistMono = localFont({
 });
 
 export default function Home() {
+  const [showIframe, setShowIframe] = useState(false);
+  const [fadeOut, setFadeOut] = useState(false); // للتحكم في تأثير الاختفاء
+
+  useEffect(() => {
+    // مؤقت لبدء التأثير بعد 5 ثوانٍ
+    const timer = setTimeout(() => {
+      setFadeOut(true); // بدء تأثير الاختفاء
+      setTimeout(() => {
+        setShowIframe(true); // إظهار الـ iframe بعد الاختفاء
+      }, 1000); // مدة الاختفاء (1 ثانية)
+    }, 5000); // مدة العرض (5 ثوانٍ)
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div
-      className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
-    >
-      <iframe
-        src="https://udify.app/chatbot/ZTRcBBe68IovALiF"
-        style={{ width: '100%', height: '100%', minHeight: '700px' }}
-        frameBorder="0"
-        allow="microphone"
-      ></iframe>
+    <div>
+      {!showIframe ? (
+        <div
+          className={`flex flex-col items-center justify-center transition-opacity duration-1000 ${
+            fadeOut ? "opacity-0" : "opacity-100"
+          }`}
+        >
+          {/* عرض الصورة مع تأثير الاختفاء */}
+          <Image className="m-4 p-9" src="/first_img.png" width={300} height={300} />
+          {/* اللودر مع أنيميشن النبض */}
+          <div className="loader mt-4 animate-pulse text-lg text-gray-600">Loading...</div>
+        </div>
+      ) : (
+       ""
+      )}
+       <iframe
+          src="https://udify.app/chatbot/ZTRcBBe68IovALiF"
+          style={{ width: "100%", height: "100%", minHeight: "700px" }}
+          frameBorder="0"
+          allow="microphone"
+        ></iframe>
     </div>
   );
 }
