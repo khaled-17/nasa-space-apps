@@ -23,8 +23,8 @@ export default function Home() {
       setFadeOut(true); // بدء تأثير الاختفاء
       setTimeout(() => {
         setShowIframe(true); // إظهار الـ iframe بعد الاختفاء
-      }, 1000); // مدة الاختفاء (1 ثانية)
-    }, 5000); // مدة العرض (5 ثوانٍ)
+      }, 100); // مدة الاختفاء (1 ثانية)
+    }, 500); // مدة العرض (5 ثوانٍ)
 
     return () => clearTimeout(timer);
   }, []);
@@ -33,24 +33,21 @@ export default function Home() {
     <div>
       {!showIframe ? (
         <div
-          className={`flex flex-col items-center justify-center transition-opacity duration-1000 ${
+          className={`bg-white h-screen w-screen flex flex-col items-center justify-center transition-opacity duration-1000 ${
             fadeOut ? "opacity-0" : "opacity-100"
           }`}
         >
-          {/* عرض الصورة مع تأثير الاختفاء */}
-          <Image className="m-4 p-9" src="/first_img.png" width={300} height={300} />
-          {/* اللودر مع أنيميشن النبض */}
-          <div className="loader mt-4 animate-pulse text-lg text-gray-600">Loading...</div>
+           <Image className="m-4 p-9" src="/first_img.png" width={300} height={300} />
+           <div className="loader mt-4 animate-pulse text-lg text-gray-600">Loading...</div>
         </div>
       ) : (
-       ""
-      )}
-       <iframe
+        <iframe
           src="https://udify.app/chatbot/ZTRcBBe68IovALiF"
           style={{ width: "100%", height: "100%", minHeight: "700px" }}
           frameBorder="0"
           allow="microphone"
         ></iframe>
+      )}
     </div>
   );
 }
