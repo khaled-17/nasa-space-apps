@@ -30,24 +30,13 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
-      {!showIframe ? (
-        <div
-          className={`bg-white h-screen w-screen flex flex-col items-center justify-center transition-opacity duration-1000 ${
-            fadeOut ? "opacity-0" : "opacity-100"
-          }`}
-        >
-           <Image className="m-4 p-9" src="/first_img.png" width={300} height={300} />
-           <div className="loader mt-4 animate-pulse text-lg text-gray-600">Loading...</div>
-        </div>
-      ) : (
-        <iframe
+    <div >
+        <iframe className="bg-slate-500 p-8"
           src="https://udify.app/chatbot/ZTRcBBe68IovALiF"
-          style={{ width: "100%", height: "100%", minHeight: "700px" }}
+          style={{ width: "100%", height: "100%", minHeight: "800px" }}
           frameBorder="0"
           allow="microphone"
         ></iframe>
-      )}
     </div>
   );
 }
