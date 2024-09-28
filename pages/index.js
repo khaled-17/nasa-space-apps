@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <div >
         <iframe className=""
-src="https://udify.app/chatbot/qMrWh839rkTmqNZG"
+src="https://udify.app/chat/MuFjlibaOx3aGfOd"
 style={{ width: "100%", height: "100%", minHeight: "800px" }}
           frameBorder="0"
           allow="microphone"
